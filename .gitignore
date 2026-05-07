@@ -1,0 +1,30 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.mypy_cache/
+.ruff_cache/
+
+# Python build artifacts
+brain-mcp/__pycache__/
+brain-mcp/*.egg-info/
+brain-mcp/dist/
+brain-mcp/build/
+
+# Logs
+*.log
+
+# Local test artifacts
+.coverage
+.pytest_cache/

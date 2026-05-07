@@ -1,0 +1,15 @@
+[project]
+name = "telos-brain"
+version = "0.1.0"
+description = "Brain MCP server for Telos — exposes the markdown brain as queryable tools."
+requires-python = ">=3.10"
+dependencies = [
+    "mcp>=1.0.0",
+]
+
+[project.scripts]
+telos-brain = "server:mcp.run"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

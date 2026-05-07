@@ -1,0 +1,59 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Run all 4 test suites
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install brain MCP dependencies
+        run: pip install -r plugins/telos/brain-mcp/requirements.txt
+
+      - name: Validate Python syntax
+        run: python -m py_compile plugins/telos/brain-mcp/server.py
+
+      - name: Lint Python (ruff)
+        run: |
+          pip install ruff
+          ruff check plugins/telos/brain-mcp/ tests/
+
+      - name: Validate hook bash syntax
+        run: bash -n plugins/telos/hooks/pre-build-coach.sh
+
+      - name: Lint hook bash (shellcheck)
+        run: |
+          sudo apt-get install -y shellcheck
+          shellcheck plugins/telos/hooks/pre-build-coach.sh
+
+      - name: MCP server unit tests (30 checks)
+        run: python tests/test_mcp.py
+
+      - name: Hook script tests (12 checks)
+        run: bash tests/test_hook.sh
+
+      - name: Skill frontmatter validation (80 checks)
+        run: python tests/test_skills.py
+
+      - name: MCP protocol integration tests (12 checks)
+        run: python tests/test_integration.py
+
+      - name: Adversarial / security / edge cases (36 checks)
+        run: python tests/test_adversarial.py
+
+      - name: E2E founder-workflow simulation (30 checks)
+        run: python tests/test_e2e.py
+
+      - name: Hook timeout protection (8 checks; Linux has /usr/bin/timeout)
+        run: python tests/test_hook_timeout.py

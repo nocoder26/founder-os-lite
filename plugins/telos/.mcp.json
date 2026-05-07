@@ -1,0 +1,9 @@
+{
+  "telos-brain": {
+    "command": "python3",
+    "args": ["${CLAUDE_PLUGIN_ROOT}/brain-mcp/server.py"],
+    "env": {
+      "BRAIN_DIR": "${CLAUDE_PROJECT_DIR}/brain"
+    }
+  }
+}

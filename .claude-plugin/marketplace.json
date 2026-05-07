@@ -1,0 +1,22 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "telos",
+  "description": "The AI that asks why. Refuses to let founders build until they've validated.",
+  "owner": {
+    "name": "Sharad",
+    "email": "smf@izana.ai"
+  },
+  "plugins": [
+    {
+      "name": "telos",
+      "description": "What's your telos? 13 skills + brain MCP that ask why before letting you ship. Concierge onboarding, adversarial customer roleplay, optional gbrain bridge. Canonical startup-validation discipline, one voice.",
+      "author": {
+        "name": "Sharad",
+        "email": "smf@izana.ai"
+      },
+      "source": "./plugins/telos",
+      "category": "productivity",
+      "homepage": "https://github.com/nocoder26/telos"
+    }
+  ]
+}
